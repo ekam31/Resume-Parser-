@@ -11,20 +11,24 @@ pip install pymupdf tqdm scikit-learn
 🗂️ Data Format:
 
 [("Sample text", {"entities": [(start, end, "LABEL")]})]
+
 ⚙️ Steps:
 
 Convert JSON annotations to .spacy format using DocBin.
 Split into train/test sets using train_test_split.
+
 Create config:
 python -m spacy init fill-config base_config.cfg config.cfg
+
 Train the model:
 python -m spacy train config.cfg --output ./output --paths.train train_data.spacy --paths.dev test_data.spacy
-🔍 Inference:
 
+🔍 Inference:
 nlp = spacy.load("model_for_ner")
 doc = nlp(text)
 for ent in doc.ents:
-    print(ent.text, ent.label_)
+print(ent.text, ent.label_)
+
 📊 Visualization:
 displacy.serve(doc, style="ent")
 
